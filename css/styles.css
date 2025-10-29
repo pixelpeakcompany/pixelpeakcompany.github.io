@@ -94,7 +94,20 @@ button {
 
 .section {
     padding: 80px 0;
-}
+} 
+
+.company-logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
 
 .section-light {
     background-color: var(--gray-50);
