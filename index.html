@@ -3,310 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelPeak | Digital Marketing Agency</title>
+    <title>PixelPeak | Interactive Digital Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
-            /* VIBRANT & TEXTURED THEME */
-            --bg-color: #0f1115;
-            --accent-purple: #7c3aed;
-            --accent-teal: #2dd4bf;
-            --accent-lime: #a3e635;
-            
-            /* BRIGHTER CARDS */
-            --glass-surface: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --glass-highlight: rgba(255, 255, 255, 0.2);
-            
+            /* THEME: Deep Space & Neon */
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.6);
+            --primary-teal: #00f2ea;
+            --accent-lime: #ff0055; /* Changed to Neon Pink/Red for higher contrast */
             --text-main: #ffffff;
-            --text-muted: #cbd5e1; /* Lighter gray for better readability */
+            --text-muted: #a1a1aa;
+            
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glow-shadow: 0 0 20px rgba(0, 242, 234, 0.15);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            /* CYBER GRID BACKGROUND */
+            min-height: 100vh;
+            cursor: default;
+        }
+
+        /* --- 1. MOUSE TRACKING SPOTLIGHT --- */
+        .spotlight {
+            position: fixed;
+            top: 0; left: 0;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 234, 0.08), transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transition: width 0.2s, height 0.2s; /* Smooth expand on click */
+        }
+        
+        /* Grid Background */
+        .grid-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-size: 40px 40px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%); /* Vignette */
         }
 
-        /* --- TIGHTER SPACING UTILITIES --- */
-        .section-pad { padding: 40px 5%; position: relative; } /* Reduced from 100px */
-        .container { max-width: 1200px; margin: 0 auto; }
-        
         /* --- NAVIGATION --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%; position: fixed; width: 100%; z-index: 1000;
-            background: rgba(15, 17, 21, 0.8); backdrop-filter: blur(12px);
+            padding: 1rem 5%; position: fixed; width: 100%; z-index: 100;
+            background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
         }
-        .logo { font-weight: 700; font-size: 1.4rem; letter-spacing: -1px; background: linear-gradient(to right, #fff, var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-teal); }
-        .btn-cta {
-            background: var(--accent-teal); color: #000; padding: 8px 20px;
-            border-radius: 6px; font-weight: 700; text-decoration: none; transition: 0.3s;
-        }
-        .btn-cta:hover { background: var(--accent-lime); transform: translateY(-2px); box-shadow: 0 0 15px var(--accent-lime); }
 
-        /* --- HERO (COMPACT & BRIGHT) --- */
-        .hero {
-            padding-top: 140px; padding-bottom: 40px; text-align: center;
-            position: relative;
+        /* LOGO VISIBILITY */
+        .logo-container {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 1.5rem; letter-spacing: 1px;
+            color: #fff; text-shadow: 0 0 10px var(--primary-teal); /* Neon Glow */
         }
-        /* Spotlight Effect behind text */
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 600px; height: 400px; background: radial-gradient(circle, rgba(45, 212, 191, 0.15), transparent 60%);
-            z-index: -1; pointer-events: none;
+        .logo-img { height: 40px; filter: drop-shadow(0 0 5px var(--primary-teal)); }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-teal); text-shadow: 0 0 8px var(--primary-teal); }
+        
+        .btn-glow {
+            padding: 10px 25px; border: 1px solid var(--primary-teal);
+            color: var(--primary-teal); border-radius: 50px; text-decoration: none;
+            transition: 0.3s; position: relative; overflow: hidden; font-weight: bold;
+        }
+        .btn-glow:hover { background: var(--primary-teal); color: #000; box-shadow: 0 0 20px var(--primary-teal); }
+
+        /* --- HERO SECTION (MAGNETIC TEXT) --- */
+        .hero {
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative; perspective: 1000px;
         }
 
         .hero h1 {
-            font-size: 3.5rem; line-height: 1.1; margin-bottom: 15px; letter-spacing: -2px;
+            font-size: 5rem; line-height: 1; margin-bottom: 20px;
+            background: linear-gradient(120deg, #fff, var(--primary-teal));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            /* Text Tilt Target */
+            transform-style: preserve-3d;
+            transition: transform 0.1s;
         }
-        .hero p { color: var(--text-muted); max-width: 500px; margin: 0 auto 30px; line-height: 1.5; }
-        
-        .stats-row { 
-            display: flex; justify-content: center; gap: 40px; 
-            border-top: 1px solid var(--glass-border); 
-            border-bottom: 1px solid var(--glass-border);
-            padding: 20px 0; max-width: 600px; margin: 0 auto;
-            background: rgba(0,0,0,0.2);
-        }
-        .stat strong { display: block; font-size: 2rem; color: var(--accent-teal); }
-        .stat span { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
 
-        /* --- SERVICES (SCROLL & CARDS) --- */
-        .section-header { margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .section-header h2 { font-size: 2rem; }
-        .scroll-hint { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+        .hero p { color: var(--text-muted); max-width: 600px; font-size: 1.2rem; }
 
-        .h-scroll-wrapper { overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; cursor: grab; }
-        .h-scroll-container { display: flex; gap: 15px; width: max-content; }
-
-        .service-card {
-            min-width: 260px; height: 300px;
-            background: var(--glass-surface);
+        /* --- 3D TILT CARDS UTILITIES --- */
+        .tilt-card {
+            background: var(--card-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: 25px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            transition: 0.3s; position: relative; overflow: hidden;
-            /* Floating Animation */
-            animation: float 6s ease-in-out infinite;
+            border-radius: 20px;
+            padding: 30px;
+            transform-style: preserve-3d; /* CRITICAL FOR 3D DEPTH */
+            transform: perspective(1000px);
+            transition: transform 0.1s ease-out; /* Smooth follow, snap back is handled in JS */
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        /* Inner Content Floats OFF the card (Parallax) */
+        .tilt-content {
+            transform: translateZ(30px); /* Pushes text towards user */
+            pointer-events: none; /* Let mouse pass through to card */
         }
         
-        /* Stagger animations so they don't all float together */
-        .service-card:nth-child(even) { animation-delay: 1s; }
-        .service-card:nth-child(3n) { animation-delay: 2s; }
-
-        .service-card:hover {
-            background: var(--glass-highlight);
-            border-color: var(--accent-teal);
-            transform: translateY(-5px);
+        .tilt-icon {
+            font-size: 3rem; color: var(--primary-teal); margin-bottom: 15px;
+            transform: translateZ(50px); /* Icon floats even higher */
+            display: block; text-shadow: 0 0 15px var(--primary-teal);
         }
 
-        .icon-circle {
-            width: 50px; height: 50px; border-radius: 50%;
-            background: rgba(45, 212, 191, 0.1); color: var(--accent-teal);
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        /* Hover State */
+        .tilt-card:hover { border-color: var(--primary-teal); box-shadow: var(--glow-shadow); }
+
+        /* --- HORIZONTAL SCROLL SERVICES --- */
+        .section-pad { padding: 50px 5%; }
+        .h-scroll-wrapper { overflow-x: auto; padding: 20px 0 50px; scrollbar-width: none; cursor: grab; }
+        .h-scroll-container { display: flex; gap: 30px; width: max-content; padding: 0 20px; }
+
+        .service-card-w {
+            min-width: 300px; height: 350px;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        /* --- TEAM (COMPACT GRID) --- */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .team-card {
-            background: var(--glass-surface); border: 1px solid var(--glass-border);
-            padding: 30px; border-radius: 12px; text-decoration: none; color: inherit;
-            transition: 0.3s; display: flex; align-items: center; gap: 20px;
-        }
-        .team-card:hover { background: var(--glass-highlight); border-color: var(--accent-lime); }
-        .avatar-placeholder { width: 60px; height: 60px; background: #333; border-radius: 50%; }
+        /* --- TEAM --- */
+        .grid-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .team-card-h { height: 300px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* --- CONTACT (MINIMAL) --- */
+        /* --- CONTACT (HIDDEN & CLEAN) --- */
         .contact-box {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid var(--glass-border); border-radius: 16px;
-            padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 50px; text-align: center;
+            max-width: 800px; margin: 0 auto; backdrop-filter: blur(10px);
         }
-        .form-input {
-            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border);
-            padding: 12px; border-radius: 6px; color: white; margin-bottom: 10px;
+        
+        .hidden-details { display: none; margin-top: 20px; animation: fadeIn 0.5s; }
+        .reveal-btn {
+            background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted);
+            padding: 10px 20px; margin-top: 20px; cursor: pointer; border-radius: 5px;
         }
-        .btn-whatsapp {
-            background: #25D366; color: white; padding: 10px 20px; border-radius: 50px;
-            text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: bold;
-            font-size: 0.9rem; margin-top: 10px;
-        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- FOOTER --- */
-        footer { border-top: 1px solid var(--glass-border); padding: 30px 5%; margin-top: 40px; background: #0b0c10; }
-        .footer-flex { display: flex; justify-content: space-between; align-items: center; }
-        .socials { display: flex; gap: 15px; }
-        .socials a { color: var(--text-muted); font-size: 1.4rem; transition: 0.2s; }
-        .socials a:hover { color: var(--accent-teal); transform: scale(1.1); }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
+        footer { border-top: 1px solid var(--glass-border); padding: 40px 5%; background: #000; margin-top: 50px; display: flex; justify-content: space-between; align-items: center; }
+        .socials a { color: #fff; font-size: 1.5rem; margin-left: 20px; transition: 0.3s; }
+        .socials a:hover { color: var(--primary-teal); text-shadow: 0 0 10px var(--primary-teal); transform: scale(1.2); }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .contact-box { grid-template-columns: 1fr; padding: 20px; }
+            .hero h1 { font-size: 3rem; }
             .nav-links { display: none; }
+            .spotlight { display: none; } /* Disable heavy JS effect on mobile */
         }
     </style>
 </head>
 <body>
 
+    <div class="spotlight"></div>
+    <div class="grid-bg"></div>
+
     <nav class="navbar">
-        <div class="logo">PixelPeak</div>
+        <div class="logo-container">
+            <img src="logo.png" alt="PixelPeak" class="logo-img">
+            <span>PixelPeak</span>
+        </div>
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#contact" class="btn-glow">Start Project</a></li>
         </ul>
-        <a href="#contact" class="btn-cta">Start Project</a>
     </nav>
 
-    <header class="hero container">
-        <h1>Elevate Your Digital<br><span style="color: var(--accent-teal)">Presence.</span></h1>
-        <p>Data-driven strategies meets motion-rich design.<br>We move faster than the market.</p>
-        
-        <div class="stats-row">
-            <div class="stat">
-                <strong>150%</strong>
-                <span>Avg ROI</span>
-            </div>
-            <div class="stat">
-                <strong>4+</strong>
-                <span>Years Exp</span>
-            </div>
-            <div class="stat">
-                <strong>85+</strong>
-                <span>Projects</span>
-            </div>
-        </div>
+    <header class="hero">
+        <h1 id="hero-text">Elevate Your<br>Digital Presence</h1>
+        <p>Motion-Rich Strategies. Data-Driven Results.</p>
     </header>
 
-    <section id="services" class="section-pad container">
-        <div class="section-header">
-            <h2>Capabilities</h2>
-            <span class="scroll-hint"><i class="ph ph-hand-swipe-left"></i> Swipe</span>
-        </div>
+    <section id="services" class="section-pad">
+        <h2 style="margin-bottom: 20px; font-size: 2rem;">Capabilities <span style="font-size:1rem; color:#555;">(Swipe & Hover)</span></h2>
         
         <div class="h-scroll-wrapper" id="scrollContainer">
             <div class="h-scroll-container">
-                <div class="service-card">
-                    <div class="icon-circle"><i class="ph ph-rocket-launch"></i></div>
-                    <div>
-                        <h3>Performance Ads</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Meta & Google campaigns optimized for CPA and high ROAS.</p>
+                
+                <div class="tilt-card service-card-w">
+                    <div class="tilt-content">
+                        <i class="ph ph-rocket-launch tilt-icon"></i>
+                        <h3>Performance Marketing</h3>
+                        <p style="color:var(--text-muted); margin-top:10px;">High-ROI campaigns on Meta & Google Ads.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="icon-circle"><i class="ph ph-paint-brush-broad"></i></div>
-                    <div>
+
+                <div class="tilt-card service-card-w">
+                    <div class="tilt-content">
+                        <i class="ph ph-paint-brush-broad tilt-icon"></i>
                         <h3>Brand Identity</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Visual storytelling that separates you from the noise.</p>
+                        <p style="color:var(--text-muted); margin-top:10px;">Visual storytelling that separates you from the noise.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="icon-circle"><i class="ph ph-magnifying-glass"></i></div>
-                    <div>
-                        <h3>SEO & Content</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Technical audits and backlink strategies to own the SERPs.</p>
+
+                <div class="tilt-card service-card-w">
+                    <div class="tilt-content">
+                        <i class="ph ph-code tilt-icon"></i>
+                        <h3>Web Development</h3>
+                        <p style="color:var(--text-muted); margin-top:10px;">3D websites and high-performance landing pages.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="icon-circle"><i class="ph ph-video-camera"></i></div>
-                    <div>
+
+                <div class="tilt-card service-card-w">
+                    <div class="tilt-content">
+                        <i class="ph ph-video-camera tilt-icon"></i>
                         <h3>Video Production</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Short-form Reels and Tiktoks that capture attention.</p>
+                        <p style="color:var(--text-muted); margin-top:10px;">Short-form content that captures attention instantly.</p>
                     </div>
                 </div>
-                 <div class="service-card">
-                    <div class="icon-circle"><i class="ph ph-code"></i></div>
-                    <div>
-                        <h3>Web Dev</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">High-speed, SEO-ready websites built on modern stacks.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="team" class="section-pad container">
-        <div class="section-header"><h2>The Architects</h2></div>
-        <div class="team-grid">
-            <a href="founder1.html" class="team-card">
-                <div class="avatar-placeholder"></div>
-                <div>
-                    <h3 style="color: var(--accent-teal)">Founder One</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Lead Strategist</p>
-                    <small style="color: var(--accent-lime)">View Portfolio &rarr;</small>
+    <section id="team" class="section-pad">
+        <h2 style="margin-bottom: 30px; font-size: 2rem;">The Architects</h2>
+        <div class="grid-team">
+            <a href="founder1.html" style="text-decoration: none;">
+                <div class="tilt-card team-card-h">
+                    <div class="tilt-content">
+                        <h3 style="font-size: 2rem; color: var(--primary-teal);">Founder One</h3>
+                        <p style="color: var(--text-muted);">Lead Strategist</p>
+                        <br>
+                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                    </div>
                 </div>
             </a>
-            <a href="founder2.html" class="team-card">
-                <div class="avatar-placeholder"></div>
-                <div>
-                    <h3 style="color: var(--accent-purple)">Founder Two</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">Creative Director</p>
-                    <small style="color: var(--accent-lime)">View Portfolio &rarr;</small>
+            <a href="founder2.html" style="text-decoration: none;">
+                <div class="tilt-card team-card-h">
+                    <div class="tilt-content">
+                        <h3 style="font-size: 2rem; color: var(--accent-lime);">Founder Two</h3>
+                        <p style="color: var(--text-muted);">Creative Director</p>
+                        <br>
+                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                    </div>
                 </div>
             </a>
         </div>
     </section>
 
-    <section id="contact" class="section-pad container">
+    <section id="contact" class="section-pad">
         <div class="contact-box">
-            <div>
-                <h2>Ready to Scale?</h2>
-                <p style="color: var(--text-muted); margin: 15px 0;">We analyze your brand and send a preliminary audit within 24 hours.</p>
-                <a href="https://wa.me/918919425232" target="_blank" class="btn-whatsapp">
-                    <i class="ph ph-whatsapp-logo" style="font-size: 1.2rem;"></i> Chat on WhatsApp
-                </a>
+            <h2>Start the Protocol</h2>
+            <p style="color: var(--text-muted); margin: 20px 0;">We analyze your brand within 24 hours.</p>
+            
+            <a href="https://wa.me/918919425232" target="_blank" class="btn-glow">
+                <i class="ph ph-whatsapp-logo"></i> Chat on WhatsApp
+            </a>
+
+            <div style="margin-top: 30px;">
+                <p style="font-size: 0.9rem; color: #555;">Or email us directly</p>
+                <p style="color: #fff; margin-top: 5px;">hello@pixelpeak.agency</p>
             </div>
-            <form>
-                <input type="text" placeholder="Name" class="form-input">
-                <input type="email" placeholder="Email" class="form-input">
-                <button type="submit" class="btn-cta" style="width: 100%; border:none; cursor: pointer;">Initialize Launch</button>
-            </form>
         </div>
     </section>
 
     <footer>
-        <div class="container footer-flex">
-            <span style="font-weight: 700; color: #fff;">PixelPeak &copy; 2026</span>
-            <div class="socials">
-                <a href="#"><i class="ph ph-twitter-logo"></i></a>
-                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
-                <a href="#"><i class="ph ph-facebook-logo"></i></a>
-                <a href="#"><i class="ph ph-instagram-logo"></i></a>
-            </div>
+        <div class="logo-container" style="font-size: 1.2rem;">PixelPeak</div>
+        <div class="socials">
+            <a href="#"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+            <a href="#"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#"><i class="ph ph-instagram-logo"></i></a>
         </div>
     </footer>
 
     <script>
-        // Horizontal Drag Scroll Logic
+        // --- 1. GLOBAL SPOTLIGHT LOGIC ---
+        const spot = document.querySelector('.spotlight');
+        document.addEventListener('mousemove', (e) => {
+            // Moves the spotlight div to cursor position
+            spot.style.left = e.clientX + 'px';
+            spot.style.top = e.clientY + 'px';
+        });
+        
+        document.addEventListener('mousedown', () => {
+            spot.style.width = '350px'; spot.style.height = '350px'; // Shrink slightly on click
+        });
+        document.addEventListener('mouseup', () => {
+            spot.style.width = '400px'; spot.style.height = '400px'; // Release
+        });
+
+        // --- 2. 3D CARD TILT LOGIC (The "Physics" Engine) ---
+        const cards = document.querySelectorAll('.tilt-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Calculate center
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Max rotation (degrees)
+                const maxRotate = 20;
+
+                // Physics math
+                const rotateX = ((y - centerY) / centerY) * -maxRotate; // Tilt Up/Down
+                const rotateY = ((x - centerX) / centerX) * maxRotate;  // Tilt Left/Right
+
+                // Apply transform
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            // Reset on leave
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        // --- 3. MAGNETIC HERO TEXT LOGIC ---
+        const heroText = document.getElementById('hero-text');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            heroText.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+        });
+
+        // --- 4. HORIZONTAL SCROLL DRAG ---
         const slider = document.querySelector('.h-scroll-wrapper');
         let isDown = false;
         let startX;
         let scrollLeft;
 
         slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
+            isDown = true; slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
         });
         slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
         slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
