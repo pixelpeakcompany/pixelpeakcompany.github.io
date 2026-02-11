@@ -33,15 +33,9 @@
 
         /* --- 1. MOUSE TRACKING SPOTLIGHT --- */
         .spotlight {
-            position: fixed;
-            top: 0; left: 0;
-            width: 400px; height: 400px;
+            position: fixed; top: 0; left: 0; width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(0, 242, 234, 0.08), transparent 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-            transition: width 0.2s, height 0.2s;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: screen;
         }
         
         /* Grid Background */
@@ -50,45 +44,62 @@
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
+            background-size: 40px 40px; z-index: -1;
             mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
 
-        /* --- NAVIGATION --- */
+        /* --- 2. GHOST NAVIGATION --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
             padding: 1rem 5%; position: fixed; width: 100%; z-index: 100;
             background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
+            transition: all 0.5s ease;
+        }
+
+        .navbar.ghost-mode {
+            background: transparent; border-bottom-color: transparent; backdrop-filter: none;
+            pointer-events: none; /* Let clicks pass through empty space */
         }
 
         .logo-container {
             display: flex; align-items: center; gap: 10px;
             font-weight: 700; font-size: 1.5rem; letter-spacing: 1px;
             color: #fff; text-shadow: 0 0 10px var(--primary-teal);
+            pointer-events: auto; /* Logo stays clickable */
+            transition: transform 0.3s;
         }
         .logo-img { height: 40px; filter: drop-shadow(0 0 5px var(--primary-teal)); }
+        
+        .navbar.ghost-mode .logo-container { transform: scale(1.1); }
+
+        /* Container for links + button to fade them out together */
+        .nav-group {
+            display: flex; align-items: center; gap: 30px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .navbar.ghost-mode .nav-group {
+            opacity: 0; transform: translateY(-20px); pointer-events: none;
+        }
 
         .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a { text-decoration: none; color: var(--text-muted); transition: 0.3s; }
         .nav-links a:hover { color: var(--primary-teal); text-shadow: 0 0 8px var(--primary-teal); }
         
-        /* GENERAL BUTTON STYLE */
         .btn-glow {
-            padding: 12px 30px; border: 1px solid var(--primary-teal);
+            padding: 10px 25px; border: 1px solid var(--primary-teal);
             color: var(--primary-teal); border-radius: 50px; text-decoration: none;
             transition: 0.3s; position: relative; overflow: hidden; font-weight: bold;
-            display: inline-flex; align-items: center; gap: 10px;
-            background: rgba(0, 242, 234, 0.05); /* Slight fill */
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0, 242, 234, 0.05);
         }
         .btn-glow:hover {
             background: var(--primary-teal); color: #000;
-            box-shadow: 0 0 25px var(--primary-teal);
-            transform: translateY(-2px);
+            box-shadow: 0 0 25px var(--primary-teal); transform: translateY(-2px);
         }
 
-        /* Hero */
+        /* --- HERO --- */
         .hero {
             height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; position: relative; perspective: 1000px;
@@ -101,7 +112,9 @@
         }
         .hero p { color: var(--text-muted); max-width: 600px; font-size: 1.2rem; }
 
-        /* Cards */
+        .section-pad { padding: 50px 5%; }
+
+        /* --- CARDS (Tilt & Physics) --- */
         .tilt-card {
             background: var(--card-bg);
             border: 1px solid var(--glass-border);
@@ -118,35 +131,32 @@
         }
         .tilt-card:hover { border-color: var(--primary-teal); box-shadow: var(--glow-shadow); }
 
-        .section-pad { padding: 50px 5%; }
-        
-        /* Horizontal Scroll */
+        /* --- HORIZONTAL SCROLL --- */
         .h-scroll-wrapper { overflow-x: auto; padding: 20px 0 50px; scrollbar-width: none; cursor: grab; }
         .h-scroll-container { display: flex; gap: 30px; width: max-content; padding: 0 20px; }
         .service-card-w { min-width: 300px; height: 350px; display: flex; flex-direction: column; justify-content: space-between; }
 
-        /* Team */
+        /* --- TEAM GRID --- */
         .grid-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .team-card-h { height: 300px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* Contact Box */
+        /* --- CONTACT BOX --- */
         .contact-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
             border-radius: 20px; padding: 60px; text-align: center;
             max-width: 800px; margin: 0 auto; backdrop-filter: blur(10px);
         }
-        .contact-buttons {
-            display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap;
-        }
+        .contact-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
 
-        /* Footer */
+        /* --- FOOTER --- */
         footer { border-top: 1px solid var(--glass-border); padding: 40px 5%; background: #000; margin-top: 50px; display: flex; justify-content: space-between; align-items: center; }
         .socials a { color: #fff; font-size: 1.5rem; margin-left: 20px; transition: 0.3s; }
         .socials a:hover { color: var(--primary-teal); text-shadow: 0 0 10px var(--primary-teal); transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .nav-links, .spotlight { display: none; }
+            .nav-group { display: none; } /* Hide menu on mobile, keep logo */
+            .spotlight { display: none; }
             .contact-buttons { flex-direction: column; }
         }
     </style>
@@ -161,11 +171,14 @@
             <img src="logo.png" alt="PixelPeak" class="logo-img">
             <span>PixelPeak</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#contact" class="btn-glow" style="padding: 8px 20px; font-size: 0.9rem;">Start Project</a></li>
-        </ul>
+        
+        <div class="nav-group">
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+            </ul>
+            <a href="#contact" class="btn-glow" style="padding: 8px 20px; font-size: 0.9rem;">Start Project</a>
+        </div>
     </nav>
 
     <header class="hero">
@@ -175,6 +188,7 @@
 
     <section id="services" class="section-pad">
         <h2 style="margin-bottom: 20px; font-size: 2rem;">Capabilities <span style="font-size:1rem; color:#555;">(Swipe & Hover)</span></h2>
+        
         <div class="h-scroll-wrapper" id="scrollContainer">
             <div class="h-scroll-container">
                 <div class="tilt-card service-card-w">
@@ -217,7 +231,8 @@
                     <div class="tilt-content">
                         <h3 style="font-size: 2rem; color: var(--primary-teal);">Founder One</h3>
                         <p style="color: var(--text-muted);">Lead Strategist</p>
-                        <br><span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                        <br>
+                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
                     </div>
                 </div>
             </a>
@@ -226,7 +241,8 @@
                     <div class="tilt-content">
                         <h3 style="font-size: 2rem; color: var(--accent-lime);">Founder Two</h3>
                         <p style="color: var(--text-muted);">Creative Director</p>
-                        <br><span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                        <br>
+                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
                     </div>
                 </div>
             </a>
@@ -242,8 +258,7 @@
                 <a href="https://wa.me/918919425232" target="_blank" class="btn-glow">
                     <i class="ph ph-whatsapp-logo" style="font-size: 1.2rem;"></i> Chat on WhatsApp
                 </a>
-
-                <a href="mailto:hello@pixelpeak.agency" class="btn-glow" style="border-color: var(--text-main); color: var(--text-main);">
+                <a href="mailto:hello@pixelpeak.agency" class="btn-glow" style="border-color: #fff; color: #fff;">
                     <i class="ph ph-envelope-simple" style="font-size: 1.2rem;"></i> Email Us
                 </a>
             </div>
@@ -261,9 +276,24 @@
     </footer>
 
     <script>
+        // 1. Ghost Header Logic
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('ghost-mode');
+            } else {
+                navbar.classList.remove('ghost-mode');
+            }
+        });
+
+        // 2. Mouse Spotlight
         const spot = document.querySelector('.spotlight');
-        document.addEventListener('mousemove', (e) => { spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px'; });
-        
+        document.addEventListener('mousemove', (e) => { 
+            spot.style.left = e.clientX + 'px'; 
+            spot.style.top = e.clientY + 'px'; 
+        });
+
+        // 3. 3D Tilt Logic
         const cards = document.querySelectorAll('.tilt-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -281,6 +311,7 @@
             });
         });
 
+        // 4. Magnetic Hero Text
         const heroText = document.getElementById('hero-text');
         document.addEventListener('mousemove', (e) => {
             const x = (window.innerWidth / 2 - e.pageX) / 50;
@@ -288,6 +319,7 @@
             heroText.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
         });
 
+        // 5. Horizontal Scroll
         const slider = document.querySelector('.h-scroll-wrapper');
         let isDown = false, startX, scrollLeft;
         slider.addEventListener('mousedown', (e) => { isDown = true; slider.style.cursor = 'grabbing'; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
