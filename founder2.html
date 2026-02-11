@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        /* --- COPYING THEME FROM HOMEPAGE --- */
+        /* --- THEME FROM HOMEPAGE --- */
         :root {
             --bg-color: #050505;
             --card-bg: rgba(20, 20, 20, 0.6);
@@ -25,10 +25,10 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
-            padding: 40px 5%; /* Page padding */
+            padding: 40px 5%;
         }
 
-        /* --- SPOTLIGHT & BACKGROUND --- */
+        /* --- SPOTLIGHT & BG --- */
         .spotlight {
             position: fixed; top: 0; left: 0; width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(0, 242, 234, 0.08), transparent 70%);
@@ -43,7 +43,7 @@
             mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
 
-        /* --- PORTFOLIO LAYOUT --- */
+        /* --- LAYOUT --- */
         .back-link {
             display: inline-flex; align-items: center; gap: 10px;
             color: var(--text-muted); text-decoration: none;
@@ -84,7 +84,7 @@
             color: var(--primary-teal); text-shadow: 0 0 15px var(--primary-teal); transform: scale(1.1);
         }
 
-        /* --- 3D WORK GRID --- */
+        /* --- WORK GRID --- */
         .section-title { font-size: 2rem; margin-bottom: 40px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px; }
         
         .work-grid {
@@ -103,11 +103,11 @@
         }
         .tilt-card:hover { border-color: var(--primary-teal); box-shadow: var(--glow-shadow); }
         
-        /* Inner text parallax */
         .project-title { font-size: 1.5rem; transform: translateZ(30px); margin-bottom: 10px; }
         .project-desc { color: var(--text-muted); transform: translateZ(20px); font-size: 0.9rem; }
         
         .cta-section { margin-top: 80px; text-align: center; }
+        
         .btn-glow {
             padding: 15px 40px; border: 1px solid var(--primary-teal);
             color: var(--primary-teal); border-radius: 50px; text-decoration: none;
@@ -144,7 +144,6 @@
                 Building digital architectures that scale. 5 years of experience turning data into revenue. 
                 Previously managed $2M+ in ad spend for SaaS giants.
             </p>
-            
             <div class="personal-socials">
                 <a href="#"><i class="ph ph-linkedin-logo"></i></a>
                 <a href="#"><i class="ph ph-twitter-logo"></i></a>
@@ -155,17 +154,14 @@
 
     <h2 class="section-title">Selected Deployments</h2>
     <div class="work-grid">
-        
         <div class="tilt-card">
             <h3 class="project-title">Project Alpha</h3>
             <p class="project-desc">Complete SEO overhaul resulting in 300% traffic increase in Q1.</p>
         </div>
-
         <div class="tilt-card">
             <h3 class="project-title">Neon Brand Identity</h3>
             <p class="project-desc">Visual language system for a FinTech unicorn.</p>
         </div>
-
         <div class="tilt-card">
             <h3 class="project-title">E-Com Scale</h3>
             <p class="project-desc">Meta Ads strategy that reduced CPA by 40%.</p>
@@ -177,16 +173,14 @@
     </div>
 
     <script>
-        // --- COPYING JS FROM HOMEPAGE FOR CONSISTENCY ---
-        
-        // 1. Mouse Spotlight
+        // Mouse Spotlight
         const spot = document.querySelector('.spotlight');
         document.addEventListener('mousemove', (e) => {
             spot.style.left = e.clientX + 'px';
             spot.style.top = e.clientY + 'px';
         });
 
-        // 2. 3D Card Tilt
+        // 3D Card Tilt
         const cards = document.querySelectorAll('.tilt-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -195,11 +189,10 @@
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -15; // Slightly less tilt for portfolio
+                const rotateX = ((y - centerY) / centerY) * -15; 
                 const rotateY = ((x - centerX) / centerX) * 15;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
-
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
             });
