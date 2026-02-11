@@ -13,7 +13,7 @@
             --bg-color: #050505;
             --card-bg: rgba(20, 20, 20, 0.6);
             --primary-teal: #00f2ea;
-            --accent-lime: #ff0055; /* Changed to Neon Pink/Red for higher contrast */
+            --accent-lime: #ff0055;
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             
@@ -41,7 +41,7 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            transition: width 0.2s, height 0.2s; /* Smooth expand on click */
+            transition: width 0.2s, height 0.2s;
         }
         
         /* Grid Background */
@@ -52,7 +52,7 @@
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -1;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%); /* Vignette */
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
         }
 
         /* --- NAVIGATION --- */
@@ -63,11 +63,10 @@
             border-bottom: 1px solid var(--glass-border);
         }
 
-        /* LOGO VISIBILITY */
         .logo-container {
             display: flex; align-items: center; gap: 10px;
             font-weight: 700; font-size: 1.5rem; letter-spacing: 1px;
-            color: #fff; text-shadow: 0 0 10px var(--primary-teal); /* Neon Glow */
+            color: #fff; text-shadow: 0 0 10px var(--primary-teal);
         }
         .logo-img { height: 40px; filter: drop-shadow(0 0 5px var(--primary-teal)); }
 
@@ -75,98 +74,80 @@
         .nav-links a { text-decoration: none; color: var(--text-muted); transition: 0.3s; }
         .nav-links a:hover { color: var(--primary-teal); text-shadow: 0 0 8px var(--primary-teal); }
         
+        /* GENERAL BUTTON STYLE */
         .btn-glow {
-            padding: 10px 25px; border: 1px solid var(--primary-teal);
+            padding: 12px 30px; border: 1px solid var(--primary-teal);
             color: var(--primary-teal); border-radius: 50px; text-decoration: none;
             transition: 0.3s; position: relative; overflow: hidden; font-weight: bold;
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(0, 242, 234, 0.05); /* Slight fill */
         }
-        .btn-glow:hover { background: var(--primary-teal); color: #000; box-shadow: 0 0 20px var(--primary-teal); }
+        .btn-glow:hover {
+            background: var(--primary-teal); color: #000;
+            box-shadow: 0 0 25px var(--primary-teal);
+            transform: translateY(-2px);
+        }
 
-        /* --- HERO SECTION (MAGNETIC TEXT) --- */
+        /* Hero */
         .hero {
             height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; position: relative; perspective: 1000px;
         }
-
         .hero h1 {
             font-size: 5rem; line-height: 1; margin-bottom: 20px;
             background: linear-gradient(120deg, #fff, var(--primary-teal));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            /* Text Tilt Target */
-            transform-style: preserve-3d;
-            transition: transform 0.1s;
+            transform-style: preserve-3d; transition: transform 0.1s;
         }
-
         .hero p { color: var(--text-muted); max-width: 600px; font-size: 1.2rem; }
 
-        /* --- 3D TILT CARDS UTILITIES --- */
+        /* Cards */
         .tilt-card {
             background: var(--card-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 30px;
-            transform-style: preserve-3d; /* CRITICAL FOR 3D DEPTH */
-            transform: perspective(1000px);
-            transition: transform 0.1s ease-out; /* Smooth follow, snap back is handled in JS */
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
+            border-radius: 20px; padding: 30px;
+            transform-style: preserve-3d; transform: perspective(1000px);
+            transition: transform 0.1s ease-out; position: relative;
+            overflow: hidden; cursor: pointer;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
-
-        /* Inner Content Floats OFF the card (Parallax) */
-        .tilt-content {
-            transform: translateZ(30px); /* Pushes text towards user */
-            pointer-events: none; /* Let mouse pass through to card */
-        }
-        
+        .tilt-content { transform: translateZ(30px); pointer-events: none; }
         .tilt-icon {
             font-size: 3rem; color: var(--primary-teal); margin-bottom: 15px;
-            transform: translateZ(50px); /* Icon floats even higher */
-            display: block; text-shadow: 0 0 15px var(--primary-teal);
+            transform: translateZ(50px); display: block; text-shadow: 0 0 15px var(--primary-teal);
         }
-
-        /* Hover State */
         .tilt-card:hover { border-color: var(--primary-teal); box-shadow: var(--glow-shadow); }
 
-        /* --- HORIZONTAL SCROLL SERVICES --- */
         .section-pad { padding: 50px 5%; }
+        
+        /* Horizontal Scroll */
         .h-scroll-wrapper { overflow-x: auto; padding: 20px 0 50px; scrollbar-width: none; cursor: grab; }
         .h-scroll-container { display: flex; gap: 30px; width: max-content; padding: 0 20px; }
+        .service-card-w { min-width: 300px; height: 350px; display: flex; flex-direction: column; justify-content: space-between; }
 
-        .service-card-w {
-            min-width: 300px; height: 350px;
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-
-        /* --- TEAM --- */
+        /* Team */
         .grid-team { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         .team-card-h { height: 300px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* --- CONTACT (HIDDEN & CLEAN) --- */
+        /* Contact Box */
         .contact-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 50px; text-align: center;
+            border-radius: 20px; padding: 60px; text-align: center;
             max-width: 800px; margin: 0 auto; backdrop-filter: blur(10px);
         }
-        
-        .hidden-details { display: none; margin-top: 20px; animation: fadeIn 0.5s; }
-        .reveal-btn {
-            background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted);
-            padding: 10px 20px; margin-top: 20px; cursor: pointer; border-radius: 5px;
+        .contact-buttons {
+            display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap;
         }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- FOOTER --- */
+        /* Footer */
         footer { border-top: 1px solid var(--glass-border); padding: 40px 5%; background: #000; margin-top: 50px; display: flex; justify-content: space-between; align-items: center; }
         .socials a { color: #fff; font-size: 1.5rem; margin-left: 20px; transition: 0.3s; }
         .socials a:hover { color: var(--primary-teal); text-shadow: 0 0 10px var(--primary-teal); transform: scale(1.2); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .nav-links { display: none; }
-            .spotlight { display: none; } /* Disable heavy JS effect on mobile */
+            .nav-links, .spotlight { display: none; }
+            .contact-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -183,7 +164,7 @@
         <ul class="nav-links">
             <li><a href="#services">Services</a></li>
             <li><a href="#team">Team</a></li>
-            <li><a href="#contact" class="btn-glow">Start Project</a></li>
+            <li><a href="#contact" class="btn-glow" style="padding: 8px 20px; font-size: 0.9rem;">Start Project</a></li>
         </ul>
     </nav>
 
@@ -194,10 +175,8 @@
 
     <section id="services" class="section-pad">
         <h2 style="margin-bottom: 20px; font-size: 2rem;">Capabilities <span style="font-size:1rem; color:#555;">(Swipe & Hover)</span></h2>
-        
         <div class="h-scroll-wrapper" id="scrollContainer">
             <div class="h-scroll-container">
-                
                 <div class="tilt-card service-card-w">
                     <div class="tilt-content">
                         <i class="ph ph-rocket-launch tilt-icon"></i>
@@ -205,7 +184,6 @@
                         <p style="color:var(--text-muted); margin-top:10px;">High-ROI campaigns on Meta & Google Ads.</p>
                     </div>
                 </div>
-
                 <div class="tilt-card service-card-w">
                     <div class="tilt-content">
                         <i class="ph ph-paint-brush-broad tilt-icon"></i>
@@ -213,7 +191,6 @@
                         <p style="color:var(--text-muted); margin-top:10px;">Visual storytelling that separates you from the noise.</p>
                     </div>
                 </div>
-
                 <div class="tilt-card service-card-w">
                     <div class="tilt-content">
                         <i class="ph ph-code tilt-icon"></i>
@@ -221,7 +198,6 @@
                         <p style="color:var(--text-muted); margin-top:10px;">3D websites and high-performance landing pages.</p>
                     </div>
                 </div>
-
                 <div class="tilt-card service-card-w">
                     <div class="tilt-content">
                         <i class="ph ph-video-camera tilt-icon"></i>
@@ -229,7 +205,6 @@
                         <p style="color:var(--text-muted); margin-top:10px;">Short-form content that captures attention instantly.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -242,8 +217,7 @@
                     <div class="tilt-content">
                         <h3 style="font-size: 2rem; color: var(--primary-teal);">Founder One</h3>
                         <p style="color: var(--text-muted);">Lead Strategist</p>
-                        <br>
-                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                        <br><span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
                     </div>
                 </div>
             </a>
@@ -252,8 +226,7 @@
                     <div class="tilt-content">
                         <h3 style="font-size: 2rem; color: var(--accent-lime);">Founder Two</h3>
                         <p style="color: var(--text-muted);">Creative Director</p>
-                        <br>
-                        <span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
+                        <br><span style="color: #fff; text-decoration: underline;">View Portfolio &rarr;</span>
                     </div>
                 </div>
             </a>
@@ -265,13 +238,14 @@
             <h2>Start the Protocol</h2>
             <p style="color: var(--text-muted); margin: 20px 0;">We analyze your brand within 24 hours.</p>
             
-            <a href="https://wa.me/918919425232" target="_blank" class="btn-glow">
-                <i class="ph ph-whatsapp-logo"></i> Chat on WhatsApp
-            </a>
+            <div class="contact-buttons">
+                <a href="https://wa.me/918919425232" target="_blank" class="btn-glow">
+                    <i class="ph ph-whatsapp-logo" style="font-size: 1.2rem;"></i> Chat on WhatsApp
+                </a>
 
-            <div style="margin-top: 30px;">
-                <p style="font-size: 0.9rem; color: #555;">Or email us directly</p>
-                <p style="color: #fff; margin-top: 5px;">hello@pixelpeak.agency</p>
+                <a href="mailto:hello@pixelpeak.agency" class="btn-glow" style="border-color: var(--text-main); color: var(--text-main);">
+                    <i class="ph ph-envelope-simple" style="font-size: 1.2rem;"></i> Email Us
+                </a>
             </div>
         </div>
     </section>
@@ -287,52 +261,26 @@
     </footer>
 
     <script>
-        // --- 1. GLOBAL SPOTLIGHT LOGIC ---
         const spot = document.querySelector('.spotlight');
-        document.addEventListener('mousemove', (e) => {
-            // Moves the spotlight div to cursor position
-            spot.style.left = e.clientX + 'px';
-            spot.style.top = e.clientY + 'px';
-        });
+        document.addEventListener('mousemove', (e) => { spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px'; });
         
-        document.addEventListener('mousedown', () => {
-            spot.style.width = '350px'; spot.style.height = '350px'; // Shrink slightly on click
-        });
-        document.addEventListener('mouseup', () => {
-            spot.style.width = '400px'; spot.style.height = '400px'; // Release
-        });
-
-        // --- 2. 3D CARD TILT LOGIC (The "Physics" Engine) ---
         const cards = document.querySelectorAll('.tilt-card');
-
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
-                // Calculate center
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
-                // Max rotation (degrees)
-                const maxRotate = 20;
-
-                // Physics math
-                const rotateX = ((y - centerY) / centerY) * -maxRotate; // Tilt Up/Down
-                const rotateY = ((x - centerX) / centerX) * maxRotate;  // Tilt Left/Right
-
-                // Apply transform
+                const rotateX = ((y - centerY) / centerY) * -20;
+                const rotateY = ((x - centerX) / centerX) * 20;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
-
-            // Reset on leave
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
             });
         });
 
-        // --- 3. MAGNETIC HERO TEXT LOGIC ---
         const heroText = document.getElementById('hero-text');
         document.addEventListener('mousemove', (e) => {
             const x = (window.innerWidth / 2 - e.pageX) / 50;
@@ -340,25 +288,12 @@
             heroText.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
         });
 
-        // --- 4. HORIZONTAL SCROLL DRAG ---
         const slider = document.querySelector('.h-scroll-wrapper');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true; slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
-        });
+        let isDown = false, startX, scrollLeft;
+        slider.addEventListener('mousedown', (e) => { isDown = true; slider.style.cursor = 'grabbing'; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft; });
         slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
         slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
+        slider.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; const walk = (x - startX) * 2; slider.scrollLeft = scrollLeft - walk; });
     </script>
 </body>
 </html>
