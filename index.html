@@ -3,357 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigitalCraft Agency - Expert Digital Marketing Solutions</title>
-    <meta name="description" content="DigitalCraft Agency offers comprehensive digital marketing services including SEO, PPC, social media, content marketing, and more. Get expert solutions for your business growth.">
-    <meta name="keywords" content="digital marketing, SEO, PPC, social media marketing, content marketing, email marketing, conversion optimization">
-    <link rel="canonical" href="https://digitalcraft-agency.github.io/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>PixelPeak | Digital Marketing Agency</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav-brand">
-                <a href="index.html" class="company-logo">
-                    <img src="PixelPeak.png">
-                </a>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="services.html" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="portfolio.html" class="nav-link">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link btn btn-primary nav-cta">Contact Us</a>
-                </li>
-            </ul>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
-                <span class="hamburger"></span>
-            </div>
-        </nav>
+
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="PixelPeak Logo" class="logo">
+            <span>PixelPeak</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#contact" class="btn-primary">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Elevate Your Digital Presence">Elevate Your Digital Presence</h1>
+            <p class="subtitle">Data-driven marketing strategies since 2021.</p>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        Transform Your Digital Presence with 
-                        <span class="highlight">Expert Marketing Solutions</span>
-                    </h1>
-                    <p class="hero-description">
-                        We're a boutique digital marketing agency specializing in comprehensive strategies that drive real results. From SEO to PPC, social media to content marketing – we've got your growth covered.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="contact.html" class="btn btn-primary btn-large">Start Your Project</a>
-                        <a href="services.html" class="btn btn-secondary btn-large">View Services</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">150+</span>
-                            <span class="stat-label">Clients Served</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">300%</span>
-                            <span class="stat-label">Avg. ROI Increase</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
+    <section id="team" class="team-section">
+        <h2 class="section-title">The Architects</h2>
+        <div class="card-container">
+            
+            <a href="portfolio-1.html" class="card-link">
+                <div class="tilt-card" data-tilt>
+                    <div class="card-content">
+                        <h3>Founder One</h3>
+                        <p class="role">Lead Strategist</p>
+                        <p class="summary">Specializing in SEO and high-conversion funnels. Turning clicks into loyal customers.</p>
+                        <span class="arrow">View Portfolio &rarr;</span>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Digital marketing team collaboration" loading="lazy">
-                </div>
-            </div>
-        </section>
+            </a>
 
-        <section class="services-preview section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Our Expertise</span>
-                    <h2 class="section-title">Comprehensive Digital Marketing Services</h2>
-                    <p class="section-description">
-                        We deliver end-to-end digital marketing solutions tailored to your business goals.
-                    </p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                                <polyline points="7.5,4.21 12,6.81 16.5,4.21"/>
-                                <polyline points="7.5,19.79 7.5,14.6 3,12"/>
-                                <polyline points="21,12 16.5,14.6 16.5,19.79"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">SEO & Content Strategy</h3>
-                        <p class="service-description">Drive organic traffic with data-driven SEO strategies and compelling content that converts.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect width="18" height="18" x="3" y="3" rx="2"/>
-                                <path d="M12 8v8"/>
-                                <path d="m8 12 4 4 4-4"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">PPC & Paid Advertising</h3>
-                        <p class="service-description">Maximize your ad spend with expertly managed campaigns across Google, Facebook, and beyond.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 4s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                                <path d="M22 11s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                                <path d="M22 18s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">Social Media Marketing</h3>
-                        <p class="service-description">Build engaged communities and drive brand awareness across all major social platforms.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect width="16" height="13" x="6" y="4" rx="2"/>
-                                <path d="m22 7-10 5L2 7"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">Email Marketing</h3>
-                        <p class="service-description">Nurture leads and retain customers with personalized email campaigns that deliver results.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 3v18h18"/>
-                                <path d="m19 9-5 5-4-4-3 3"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">Analytics & Optimization</h3>
-                        <p class="service-description">Turn data into actionable insights with advanced analytics and conversion optimization.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="3"/>
-                                <path d="M12 1v6m0 6v6"/>
-                                <path d="m21 12-6 0m-6 0-6 0"/>
-                            </svg>
-                        </div>
-                        <h3 class="service-title">Brand Strategy</h3>
-                        <p class="service-description">Develop compelling brand narratives and positioning that resonates with your target audience.</p>
+            <a href="portfolio-2.html" class="card-link">
+                <div class="tilt-card" data-tilt>
+                    <div class="card-content">
+                        <h3>Founder Two</h3>
+                        <p class="role">Creative Director</p>
+                        <p class="summary">Master of visual storytelling and brand identity. Creating designs that resonate.</p>
+                        <span class="arrow">View Portfolio &rarr;</span>
                     </div>
                 </div>
-                <div class="section-cta">
-                    <a href="services.html" class="btn btn-outline">View All Services</a>
-                </div>
-            </div>
-        </section>
+            </a>
 
-        <section class="founders-preview section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Meet the Team</span>
-                    <h2 class="section-title">Expert Founders, Proven Results</h2>
-                    <p class="section-description">
-                        Our co-founders bring decades of combined experience from leading digital marketing initiatives at Fortune 500 companies.
-                    </p>
-                </div>
-                <div class="founders-grid">
-                    <div class="founder-card">
-                        <div class="founder-image">
-                            <img src="https://images.pexels.com/photos/3777931/pexels-photo-3777931.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Sarah Chen - Co-Founder & Strategy Director" loading="lazy">
-                        </div>
-                        <div class="founder-content">
-                            <h3 class="founder-name">Sarah Chen</h3>
-                            <p class="founder-title">Co-Founder & Strategy Director</p>
-                            <p class="founder-description">
-                                Former Head of Digital at TechCorp with 8+ years specializing in SEO, content strategy, and conversion optimization. Led campaigns that generated $50M+ in revenue.
-                            </p>
-                            <div class="founder-specialties">
-                                <span class="specialty">SEO</span>
-                                <span class="specialty">Content Strategy</span>
-                                <span class="specialty">Analytics</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="founder-card">
-                        <div class="founder-image">
-                            <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Marcus Rodriguez - Co-Founder & Growth Director" loading="lazy">
-                        </div>
-                        <div class="founder-content">
-                            <h3 class="founder-name">Marcus Rodriguez</h3>
-                            <p class="founder-title">Co-Founder & Growth Director</p>
-                            <p class="founder-description">
-                                Ex-Google Ads specialist with 7+ years in PPC, social media advertising, and email marketing. Managed $10M+ in ad spend with consistently high ROI.
-                            </p>
-                            <div class="founder-specialties">
-                                <span class="specialty">PPC</span>
-                                <span class="specialty">Social Media</span>
-                                <span class="specialty">Email Marketing</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="section-cta">
-                    <a href="about.html" class="btn btn-primary">Learn More About Us</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Client Success</span>
-                    <h2 class="section-title">What Our Clients Say</h2>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "DigitalCraft transformed our online presence completely. Our organic traffic increased by 280% in just 6 months, and our conversion rate doubled. Their strategic approach is unmatched."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Jennifer Walsh" class="author-image" loading="lazy">
-                            <div class="author-info">
-                                <h4 class="author-name">Jennifer Walsh</h4>
-                                <p class="author-title">CEO, EcoTech Solutions</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "Working with DigitalCraft was a game-changer. Their PPC campaigns generated 400% ROI while their content strategy established us as industry thought leaders."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" alt="David Kim" class="author-image" loading="lazy">
-                            <div class="author-info">
-                                <h4 class="author-name">David Kim</h4>
-                                <p class="author-title">Founder, FinanceForward</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p class="testimonial-text">
-                                "The team's expertise in email marketing and automation helped us nurture leads more effectively. Our customer lifetime value increased by 190% within the first year."
-                            </p>
-                        </div>
-                        <div class="testimonial-author">
-                            <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Lisa Thompson" class="author-image" loading="lazy">
-                            <div class="author-info">
-                                <h4 class="author-name">Lisa Thompson</h4>
-                                <p class="author-title">Marketing Director, HealthPlus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-section section section-dark">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 class="cta-title">Ready to Accelerate Your Growth?</h2>
-                    <p class="cta-description">
-                        Join 150+ successful businesses that trust DigitalCraft to drive their digital marketing success.
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="btn btn-primary btn-large">Get Started Today</a>
-                        <a href="portfolio.html" class="btn btn-outline-light btn-large">View Our Work</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3 class="footer-title">DigitalCraft</h3>
-                    <p class="footer-description">
-                        Expert digital marketing solutions for ambitious businesses ready to grow.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                                <rect width="4" height="12" x="2" y="9"/>
-                                <circle cx="4" cy="4" r="2"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Twitter">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 4s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                                <path d="M22 11s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                                <path d="M22 18s-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1-1 1-3 1-3-1-3-1"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                                <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4 class="footer-column-title">Services</h4>
-                        <ul class="footer-menu">
-                            <li><a href="services.html#seo" class="footer-link">SEO & Content</a></li>
-                            <li><a href="services.html#ppc" class="footer-link">PPC Advertising</a></li>
-                            <li><a href="services.html#social" class="footer-link">Social Media</a></li>
-                            <li><a href="services.html#email" class="footer-link">Email Marketing</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-column-title">Company</h4>
-                        <ul class="footer-menu">
-                            <li><a href="about.html" class="footer-link">About Us</a></li>
-                            <li><a href="portfolio.html" class="footer-link">Case Studies</a></li>
-                            <li><a href="blog.html" class="footer-link">Blog</a></li>
-                            <li><a href="contact.html" class="footer-link">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4 class="footer-column-title">Contact</h4>
-                        <ul class="footer-contact">
-                            <li>hello@digitalcraft.agency</li>
-                            <li>(555) 123-4567</li>
-                            <li>San Francisco, CA</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 DigitalCraft Agency. All rights reserved.</p>
-            </div>
         </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 PixelPeak. All rights reserved.</p>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
